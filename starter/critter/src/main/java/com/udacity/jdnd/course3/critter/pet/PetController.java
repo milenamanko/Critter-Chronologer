@@ -13,6 +13,15 @@ public class PetController {
 
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
+        long ownerId = petDTO.getOwnerId();
+        // Owner owner = ownerrepositoruy.getownerbyid(ownerid)
+        // if (owner == null) {
+        // to jebnij excetpiton
+
+
+        // Pet pet = new Pet(owner)
+        // petRepository.save(pet)
+
         throw new UnsupportedOperationException();
     }
 

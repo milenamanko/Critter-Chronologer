@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
+import com.udacity.jdnd.course3.critter.user.Employee;
 import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +21,20 @@ public class Schedule {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    private List<Long> employeeIds;
 
-    @ManyToMany
-    private List<Long> petIds;
-
-    private LocalDate date;
-
-    @ManyToMany
-    private Set<EmployeeSkill> activities;
+//
+//    @ManyToMany
+//    @JoinColumn(name = "employee", referencedColumnName = "id")
+//    private List<Long> employeeIds;
+//
+//    @ManyToMany
+//    @JoinColumn(name = "pet", referencedColumnName = "id")
+//    private List<Long> petIds;
+//
+//    private LocalDate date;
+//
+//    @JoinColumn(name = "employee", referencedColumnName = "skills")
+//    @ManyToMany
+//    private Set<EmployeeSkill> activities;
 
 }

@@ -1,10 +1,10 @@
 package com.udacity.jdnd.course3.critter.user;
 
+import com.udacity.jdnd.course3.critter.pet.Pet;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "Customer")
@@ -17,6 +17,7 @@ public class Customer extends User {
 
     private String notes;
 
-    private List<Long> petIds;
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Pet> pets;
 
 }

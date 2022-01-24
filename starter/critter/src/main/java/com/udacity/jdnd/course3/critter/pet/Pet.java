@@ -1,12 +1,13 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import com.udacity.jdnd.course3.critter.user.Customer;
+import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +18,7 @@ public class Pet {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private PetType type;
 
     private String name;
@@ -26,5 +28,8 @@ public class Pet {
     private LocalDate birthDate;
 
     private String notes;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
 
 }
