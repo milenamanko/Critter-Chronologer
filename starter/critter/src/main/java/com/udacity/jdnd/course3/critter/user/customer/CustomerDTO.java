@@ -1,4 +1,9 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.user.customer;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -6,6 +11,7 @@ import java.util.List;
  * Represents the form that customer request and response data takes. Does not map
  * to the database directly.
  */
+@RequiredArgsConstructor
 public class CustomerDTO {
     private Long id;
     private String name;

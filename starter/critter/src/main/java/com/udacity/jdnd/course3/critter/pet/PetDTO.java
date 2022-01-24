@@ -1,11 +1,16 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDate;
 
 /**
  * Represents the form that pet request and response data takes. Does not map
  * to the database directly.
  */
+@RequiredArgsConstructor
 public class PetDTO {
     private Long id;
     private PetType type;

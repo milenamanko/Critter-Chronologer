@@ -1,17 +1,15 @@
 package com.udacity.jdnd.course3.critter.pet;
 
-import com.udacity.jdnd.course3.critter.user.Customer;
-import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
-import lombok.Getter;
-import lombok.Setter;
+import com.udacity.jdnd.course3.critter.user.customer.Customer;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Pet {
 
     @Id
@@ -23,7 +21,7 @@ public class Pet {
 
     private String name;
 
-    private Long ownerId;
+//    private Long ownerId;
 
     private LocalDate birthDate;
 
@@ -31,5 +29,18 @@ public class Pet {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
+
+    public static PetDTO mapPetToPetDTO(Pet pet) {
+
+        PetDTO petDTO = new PetDTO();
+        petDTO.setId(pet.getId());
+        petDTO.setName(pet.getName());
+        petDTO.setType(pet.getType());
+        petDTO.setOwnerId(pet.getCustomer().getId());
+        petDTO.setBirthDate(pet.getBirthDate());
+        petDTO.setNotes(pet.getNotes());
+
+        return petDTO;
+    }
 
 }
