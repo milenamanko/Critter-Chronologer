@@ -51,7 +51,7 @@ public class PetController {
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable Long petId) {
 
-        Pet pet = new Pet();
+        Pet pet;
 
         if (petService.getPetById(petId) == null) {
             throw new IllegalArgumentException("Invalid pet ID");
@@ -63,19 +63,17 @@ public class PetController {
     }
 
     @GetMapping
-    public List<PetDTO> getPets(){
+    public List<PetDTO> getPets() {
 
-        List<Pet> pets = petService.getAllPets();
-        List<PetDTO> petDTOS = new ArrayList<>();
-
-        return pets.stream().map(Pet::mapPetToPetDTO).collect(Collectors.toList());
+        return petService.getAllPets().stream()
+                .map(Pet::mapPetToPetDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable Long ownerId) {
 
-       List<Pet> pets;
-       List<PetDTO> petDTOS = new ArrayList<>();
+        List<Pet> pets;
 
         if (customerService.getCustomerById(ownerId) == null) {
             throw new IllegalArgumentException("Invalid owner ID");
@@ -83,6 +81,8 @@ public class PetController {
             pets = petService.getPetsByCustomerId(ownerId);
         }
 
-        return pets.stream().map(Pet::mapPetToPetDTO).collect(Collectors.toList());
+        return pets.stream().
+                map(Pet::mapPetToPetDTO).
+                collect(Collectors.toList());
     }
 }

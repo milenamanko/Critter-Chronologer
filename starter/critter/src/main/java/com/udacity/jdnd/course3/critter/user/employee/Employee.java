@@ -2,6 +2,8 @@ package com.udacity.jdnd.course3.critter.user.employee;
 
 import com.udacity.jdnd.course3.critter.user.User;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "user_id")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Employee extends User {
 
     @Enumerated(EnumType.STRING)

@@ -2,6 +2,7 @@ package com.udacity.jdnd.course3.critter.user;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.pet.PetService;
+import com.udacity.jdnd.course3.critter.schedule.Schedule;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
@@ -55,15 +56,9 @@ public class UserController {
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers() {
 
-        List<Customer> customers = customerService.getAllCustomers();
-        List<CustomerDTO> customerDTOS = new ArrayList<>();
-
-        for (Customer customer : customers) {
-            customerDTOS.add(Customer.mapCustomerToCustomerDTO(customer));
-        }
-
-        return customers.stream().map(Customer::mapCustomerToCustomerDTO).collect(Collectors.toList());
-
+        return customerService.getAllCustomers().stream()
+                .map(Customer::mapCustomerToCustomerDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/customer/pet/{petId}")
@@ -124,7 +119,10 @@ public class UserController {
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
         List<Employee> employees = employeeService.findEmployeeBySkillAndDay(employeeDTO.getSkills(), employeeDTO.getDate().getDayOfWeek());
-        return employees.stream().map(Employee::mapEmployeeToEmployeeDTO).collect(Collectors.toList());
+
+        return employees.stream().
+                map(Employee::mapEmployeeToEmployeeDTO).
+                collect(Collectors.toList());
     }
 
 }
