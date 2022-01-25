@@ -30,6 +30,10 @@ public class Pet {
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
+    public Pet(Customer customer) {
+        this.customer = customer;
+    }
+
     public static PetDTO mapPetToPetDTO(Pet pet) {
 
         PetDTO petDTO = new PetDTO();

@@ -62,17 +62,19 @@ public class UserController {
             customerDTOS.add(Customer.mapCustomerToCustomerDTO(customer));
         }
 
-        return customerDTOS;
+        return customers.stream().map(Customer::mapCustomerToCustomerDTO).collect(Collectors.toList());
+
     }
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable Long petId) {
 
         Customer customer = new Customer();
+
         if (petService.getPetById(petId) == null) {
             throw new IllegalArgumentException("Invalid pet ID");
         } else {
-            customerService.getCustomerByPetId(petId);
+            customer = customerService.getCustomerByPetId(petId);
         }
 
         return Customer.mapCustomerToCustomerDTO(customer);
@@ -99,10 +101,11 @@ public class UserController {
         if (employeeService.getEmployeeById(employeeId) == null) {
             throw new IllegalArgumentException("Invalid employee ID");
         } else {
-            employeeService.getEmployeeById(employeeId);
+            employee = employeeService.getEmployeeById(employeeId);
         }
 
         return Employee.mapEmployeeToEmployeeDTO(employee);
+
     }
 
     @PutMapping("/employee/{employeeId}")
