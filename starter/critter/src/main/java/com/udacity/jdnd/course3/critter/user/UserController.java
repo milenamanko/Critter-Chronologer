@@ -2,7 +2,6 @@ package com.udacity.jdnd.course3.critter.user;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.pet.PetService;
-import com.udacity.jdnd.course3.critter.schedule.Schedule;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
@@ -10,11 +9,9 @@ import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Convert;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +44,9 @@ public class UserController {
         customer.setName(customerDTO.getName());
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
         customer.setNotes(customerDTO.getNotes());
+        List<Pet> pets = new ArrayList<>();
+        customerDTO.getPetIds().forEach(id -> pets.add(petService.getPetById(id)));
+        customer.setPets(pets);
 
         customerService.save(customer);
 

@@ -1,7 +1,5 @@
 package com.udacity.jdnd.course3.critter.pet;
 
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;

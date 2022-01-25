@@ -2,10 +2,14 @@ package com.udacity.jdnd.course3.critter.user.customer;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.user.User;
-import lombok.*;
-import org.springframework.context.annotation.Bean;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +33,7 @@ public class Customer extends User {
         customerDTO.setName(customer.getName());
         customerDTO.setPhoneNumber(customer.getPhoneNumber());
         customerDTO.setNotes(customer.getNotes());
-//        List<Long> petIds = customer.getPets().stream().map(Pet::getId).collect(Collectors.toList());
-//        customerDTO.setPetIds(petIds);
+        customerDTO.setPetIds(customer.getPets().stream().map(Pet::getId).collect(Collectors.toList()));
 
         return customerDTO;
     }

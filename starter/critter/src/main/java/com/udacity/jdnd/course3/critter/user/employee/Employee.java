@@ -2,7 +2,6 @@ package com.udacity.jdnd.course3.critter.user.employee;
 
 import com.udacity.jdnd.course3.critter.user.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 

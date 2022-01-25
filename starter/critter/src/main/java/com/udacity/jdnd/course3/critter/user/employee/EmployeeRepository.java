@@ -1,6 +1,5 @@
 package com.udacity.jdnd.course3.critter.user.employee;
 
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

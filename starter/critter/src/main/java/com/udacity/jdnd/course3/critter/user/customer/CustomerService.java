@@ -1,6 +1,5 @@
 package com.udacity.jdnd.course3.critter.user.customer;
 
-import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
