@@ -67,7 +67,7 @@ public class ScheduleController {
         if (petService.getPetById(petId) == null) {
             throw new IllegalArgumentException("Invalid pet ID");
         } else {
-            schedules = scheduleService.getSchedulesByPetId(petId);
+            schedules = scheduleService.findScheduleByPetId(petId);
         }
 
         return schedules.stream()
@@ -83,7 +83,8 @@ public class ScheduleController {
         if (employeeService.getEmployeeById(employeeId) == null) {
             throw new IllegalArgumentException("Invalid employee ID");
         } else {
-            schedules = scheduleService.getSchedulesByEmployeeId(employeeId);
+            schedules = scheduleService.findScheduleByEmployeeId(employeeId);
+
         }
 
         return schedules.stream()
@@ -99,7 +100,7 @@ public class ScheduleController {
         if (customerService.getCustomerById(customerId) == null) {
             throw new IllegalArgumentException("Invalid customer ID");
         } else {
-            schedules = scheduleService.getSchedulesByEmployeeId(customerId);
+            schedules = scheduleService.findScheduleByCustomerId(customerId);
         }
 
         return schedules.stream()

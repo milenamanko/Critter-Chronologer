@@ -45,7 +45,9 @@ public class UserController {
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
         customer.setNotes(customerDTO.getNotes());
         List<Pet> pets = new ArrayList<>();
-        customerDTO.getPetIds().forEach(id -> pets.add(petService.getPetById(id)));
+        if (customerDTO.getPetIds() != null) {
+            customerDTO.getPetIds().forEach(id -> pets.add(petService.getPetById(id)));
+        }
         customer.setPets(pets);
 
         customerService.save(customer);
@@ -66,7 +68,7 @@ public class UserController {
 
         Customer customer = new Customer();
 
-        if (petService.getPetById(petId) == null) {
+        if (null == petService.getPetById(petId)) {
             throw new IllegalArgumentException("Invalid pet ID");
         } else {
             customer = customerService.getCustomerByPetId(petId);
@@ -101,6 +103,14 @@ public class UserController {
 
         return Employee.mapEmployeeToEmployeeDTO(employee);
 
+    }
+
+    @GetMapping("/employee")
+    public List<EmployeeDTO> getAllEmployees() {
+
+        return employeeService.getAllEmployees().stream()
+                .map(Employee::mapEmployeeToEmployeeDTO)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/employee/{employeeId}")

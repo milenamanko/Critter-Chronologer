@@ -1,5 +1,7 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
+import com.udacity.jdnd.course3.critter.pet.Pet;
+import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,12 +11,9 @@ import java.util.List;
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
-    @Query("select p.schedules from Pet p where p.id = :petId")
-    List<Schedule> getSchedulesByPetId(Long petId);
+    List<Schedule> findByPets(Pet pet);
 
-    @Query("select c.schedules from Customer c where c.id = :customerId")
-    List<Schedule> getSchedulesByCustomerId(Long customerId);
+    List<Schedule> findByPetsIn(List<Pet> pets);
 
-    @Query("select e.schedules from Employee e where e.id = :employeeId")
-    List<Schedule> getSchedulesByEmployeeId(Long employeeId);
+    List<Schedule> findByEmployees(Employee employee);
 }

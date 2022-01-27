@@ -1,8 +1,5 @@
 package com.udacity.jdnd.course3.critter.user.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
