@@ -42,6 +42,8 @@ public class PetController {
         pet.setNotes(petDTO.getNotes());
 
         petService.save(pet);
+        owner = customerService.savePetOwner(owner,pet);
+        customerService.save(owner);
 
         return Pet.mapPetToPetDTO(pet);
     }
